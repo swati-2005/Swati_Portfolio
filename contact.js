@@ -1,20 +1,23 @@
-const btn = document.getElementById('button');
+const btn = document.querySelector(".btn-message");
 
-document.getElementById('form')
- .addEventListener('submit', function(event) {
-   event.preventDefault();
+document
+  .getElementById("contact_form")
+  .addEventListener("submit", function (event) {
+    event.preventDefault();
 
-   btn.value = 'Sending...';
+    btn.textContent = "Sending...";
 
-   const serviceID = 'default_service';
-   const templateID = 'template_l89ab3e';
+    const serviceID = "service_q4tptpm";
+    const templateID = "template_l89ab3e";
 
-   emailjs.sendForm(serviceID, templateID, this)
-    .then(() => {
-      btn.value = 'Send Email';
-      alert('massgae send successfylly!');
-    }, (err) => {
-      btn.value = 'Send Email';
-      alert(JSON.stringify(err));
-    });
-});
+    emailjs
+      .sendForm(serviceID, templateID, this)
+      .then(() => {
+        btn.textContent = "Send Message";
+        alert("Message sent successfully!");
+      })
+      .catch((err) => {
+        btn.textContent = "Send Message";
+        alert("Failed to send message: " + JSON.stringify(err));
+      });
+  });
